@@ -1,0 +1,50 @@
+﻿@model IEnumerable<TrainReservation.Entities.Wagon>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>Reservation</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Capacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OccupiedSeats)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OccupiedSeats)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<form method="post" action="/Reservation/Add">
+<div>
+    <label for="PassengerCount">Number of passengers:</label>
+    <input type="number" name="PassengerCount" min="1" required>
+</div>
+<div>
+    <label for="CanSplitAcrossWagons">May the group be split across wagons?</label>
+    <input type="checkbox" name="CanSplitAcrossWagons" value="true">
+</div>
+<button type="submit">Reserve</button>
+</form>
